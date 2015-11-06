@@ -15,4 +15,4 @@ with:
     mro_Map.events.register("moveend", Waze.map, function(){setTimeout(function(){CurrentRaidLocation(raid_mapLayer)},2000)});
     mro_Map.events.register("zoomend", Waze.map, function(){setTimeout(function(){CurrentRaidLocation(raid_mapLayer)},2000);});
 
-Save, close, reload WME.  Should add the overlay info to the black bar.  There is a 2 second delay to allow for road loading.  
+Save, close, reload WME.  Should add the overlay info to the black bar.  There is a 2 second delay to allow for road loading.  If you find that the overlay name is disappearing too often, change the 2000 in those two lines to 3000 or 4000 to add an extra delay before the overlay text gets added to the bar.
