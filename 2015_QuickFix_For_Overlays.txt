@@ -1,0 +1,18 @@
+1) Open the script. 
+--In Chrome: Open the dashboard from the Tampermonkey icon menu top right.  Then click on the Overlay script.
+--In Firefox: From the Greasemonkey icon in the top right, choose Manage User Scripts....  Select Preferences for the script you want to change, and then Edit this User Script at the bottom of the window that opens.
+
+2) search and replace any instances of:
+WazeControlLocationInfo
+with:
+location-info
+There should be at least 2, possibly more depending on the overlay
+
+3) Towards the very end of the script, replace these two lines:
+    mro_Map.events.register("moveend", Waze.map, function(){CurrentRaidLocation(raid_mapLayer);});
+    mro_Map.events.register("zoomend", Waze.map, function(){CurrentRaidLocation(raid_mapLayer);});
+with:
+    mro_Map.events.register("moveend", Waze.map, function(){setTimeout(function(){CurrentRaidLocation(raid_mapLayer)},2000)});
+    mro_Map.events.register("zoomend", Waze.map, function(){setTimeout(function(){CurrentRaidLocation(raid_mapLayer)},2000);});
+
+Save, close, reload WME.  Should add the overlay info to the black bar.  There is a 2 second delay to allow for road loading.  
